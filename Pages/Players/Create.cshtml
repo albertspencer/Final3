@@ -1,0 +1,21 @@
+@page
+@model Final3.Pages.Players.CreateModel
+@{
+    ViewData["Title"] = "Add Player";
+}
+
+<h2>Add a New Player</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Player.Name" class="form-label"></label>
+        <input asp-for="Player.Name" class="form-control" />
+        <span asp-validation-for="Player.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Player.Rank" class="form-label"></label>
+        <input asp-for="Player.Rank" class="form-control" />
+        <span asp-validation-for="Player.Rank" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Player</button>
+</form>
