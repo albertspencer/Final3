@@ -1,30 +1,100 @@
 @page
 @model Final3.Pages.Players.IndexModel
+
 @{
     ViewData["Title"] = "Players";
 }
 
-<h2>Players List</h2>
+<h1>Players</h1>
 
-<p>
-    <a asp-page="Create">Add New Player</a>
-</p>
+<div class="row mb-3">
+    <div class="col-md-6">
+        <form method="get">
+            <div class="input-group">
+                <input type="text" name="SearchString" value="@Model.SearchString" class="form-control" placeholder="Search by Name" />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Rank</th>
+            <th>
+                <a asp-page="./Index" asp-route-SortOrder="@ViewData["NameSort"]">Player Name</a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-SortOrder="@ViewData["HoursPlayedSort"]">Hours Played</a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-SortOrder="@ViewData["CurrentLevelSort"]">Current Level</a>
+            </th>
+            <th>
+                Games Played
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var player in Model.Players)
+        @if (Model.Players != null && Model.Players.Any())
+        {
+            @foreach (var player in Model.Players)
+            {
+                <tr>
+                    <td>
+                        @player.Name
+                    </td>
+                    <td>
+                        @player.HoursPlayed
+                    </td>
+                    <td>
+                        @player.CurrentLevel
+                    </td>
+                    <td>
+                        @if (player.GamePlayers != null && player.GamePlayers.Any())
+                        {
+                            <ul>
+                                @foreach (var gamePlayer in player.GamePlayers)
+                                {
+                                    <li>@gamePlayer.Game?.Title</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <span>No games played</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@player.PlayerID" class="text-primary text-decoration-none">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@player.PlayerID" class="text-primary text-decoration-none">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@player.PlayerID" class="text-primary text-decoration-none">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>@player.Name</td>
-                <td>@player.Rank</td>
+                <td colspan="5">No players found.</td>
             </tr>
         }
     </tbody>
 </table>
+
+<hr />
+<nav aria-label="Page navigation example" class="d-flex justify-content-start">
+    <ul class="pagination">
+        <li class="page-item @(Model.PageNum <= 1 ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)" 
+               asp-route-SortOrder="@Model.SortOrder" 
+               asp-route-SearchString="@Model.SearchString">Previous</a>
+        </li>
+        <li class="page-item @(Model.PageNum >= Model.TotalPages ? "disabled" : "")">
+            <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)" 
+               asp-route-SortOrder="@Model.SortOrder" 
+               asp-route-SearchString="@Model.SearchString">Next</a>
+        </li>
+    </ul>
+</nav>
