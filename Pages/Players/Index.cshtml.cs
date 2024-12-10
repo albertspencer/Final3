@@ -43,10 +43,10 @@ namespace Final3.Pages.Players
           // Search logic
 if (!string.IsNullOrEmpty(SearchString))
 {
-    var upperSearch = SearchString.ToUpper(); // Convert search string to uppercase for case-insensitive comparison
+    var searchLower = SearchString.ToLower();
     query = query.Where(p =>
-        EF.Functions.Like(p.FavoriteGame.ToUpper(), $"%{upperSearch}%") || 
-        EF.Functions.Like(p.Name.ToUpper(), $"%{upperSearch}%"));
+        p.Name.ToLower().Contains(searchLower) ||
+        p.FavoriteGame.ToLower().Contains(searchLower));
 }
 
 
