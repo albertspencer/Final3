@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +14,7 @@ namespace Final3.Pages.Players
             _context = context;
         }
 
-        public IList<Player>? Players { get; set; }
+        public IList<Player> Players { get; set; } = new List<Player>();
 
         [BindProperty(SupportsGet = true)]
         public string? SearchString { get; set; }
@@ -35,31 +31,29 @@ namespace Final3.Pages.Players
         public async Task OnGetAsync()
         {
             ViewData["NameSort"] = string.IsNullOrEmpty(SortOrder) ? "name_desc" : "";
-            ViewData["LevelSort"] = SortOrder == "level_asc" ? "level_desc" : "level_asc";
+            ViewData["HoursSort"] = SortOrder == "hours_asc" ? "hours_desc" : "hours_asc";
 
-            var playersQuery = _context.Players
+            var query = _context.Players
                 .Include(p => p.GamePlayers)
                 .ThenInclude(gp => gp.Game)
                 .AsQueryable();
 
-            playersQuery = SortOrder switch
-            {
-                "name_desc" => playersQuery.OrderByDescending(p => p.Name),
-                "level_asc" => playersQuery.OrderBy(p => p.CurrentLevel),
-                "level_desc" => playersQuery.OrderByDescending(p => p.CurrentLevel),
-                _ => playersQuery.OrderBy(p => p.Name),
-            };
-
             if (!string.IsNullOrEmpty(SearchString))
             {
-                playersQuery = playersQuery.Where(p =>
-                    p.Name != null &&
-                    p.Name.Contains(SearchString, StringComparison.OrdinalIgnoreCase));
+                query = query.Where(p => p.Name.Contains(SearchString) ||
+                                         p.GamePlayers.Any(gp => gp.Game != null && gp.Game.Title.Contains(SearchString)));
             }
 
-            TotalPages = (int)Math.Ceiling(await playersQuery.CountAsync() / (double)PageSize);
+            query = SortOrder switch
+            {
+                "name_desc" => query.OrderByDescending(p => p.Name),
+                "hours_asc" => query.OrderBy(p => p.HoursPlayed),
+                "hours_desc" => query.OrderByDescending(p => p.HoursPlayed),
+                _ => query.OrderBy(p => p.Name),
+            };
 
-            Players = await playersQuery
+            TotalPages = (int)Math.Ceiling(await query.CountAsync() / (double)PageSize);
+            Players = await query
                 .Skip((PageNum - 1) * PageSize)
                 .Take(PageSize)
                 .ToListAsync();
