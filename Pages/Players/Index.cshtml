@@ -23,8 +23,12 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Player Name</th>
-            <th>Hours Played</th>
+            <th>
+                <a asp-page="./Index" asp-route-SortOrder="@ViewData["NameSort"]" asp-route-SearchString="@Model.SearchString" asp-route-PageNum="@Model.PageNum">Player Name</a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-SortOrder="@ViewData["HoursSort"]" asp-route-SearchString="@Model.SearchString" asp-route-PageNum="@Model.PageNum">Hours Played</a>
+            </th>
             <th>Favorite Game</th>
         </tr>
     </thead>
@@ -36,21 +40,8 @@
                 <tr>
                     <td>@player.Name</td>
                     <td>@player.HoursPlayed</td>
-                    <td>
-                        @if (player.GamePlayers != null && player.GamePlayers.Any())
-                        {
-                            <ul>
-                                @foreach (var gamePlayer in player.GamePlayers)
-                                {
-                                    <li>@gamePlayer.Game?.Title</li>
-                                }
-                            </ul>
-                        }
-                        else
-                        {
-                            <span>No games played</span>
-                        }
-                    </td>
+                    <td>@player.FavoriteGame</td>
+
                 </tr>
             }
         }
@@ -68,10 +59,10 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination">
         <li class="page-item @(Model.PageNum <= 1 ? "disabled" : "")">
-            <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)" asp-route-SearchString="@Model.SearchString">Previous</a>
+            <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)" asp-route-SortOrder="@Model.SortOrder" asp-route-SearchString="@Model.SearchString">Previous</a>
         </li>
         <li class="page-item @(Model.PageNum >= Model.TotalPages ? "disabled" : "")">
-            <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)" asp-route-SearchString="@Model.SearchString">Next</a>
+            <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)" asp-route-SortOrder="@Model.SortOrder" asp-route-SearchString="@Model.SearchString">Next</a>
         </li>
     </ul>
 </nav>

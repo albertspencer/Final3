@@ -30,20 +30,25 @@ namespace Final3.Pages.Players
 
         public async Task OnGetAsync()
         {
+            // Sorting Links
             ViewData["NameSort"] = string.IsNullOrEmpty(SortOrder) ? "name_desc" : "";
             ViewData["HoursSort"] = SortOrder == "hours_asc" ? "hours_desc" : "hours_asc";
 
+            // Query Players
             var query = _context.Players
                 .Include(p => p.GamePlayers)
                 .ThenInclude(gp => gp.Game)
                 .AsQueryable();
 
+            // Search logic
             if (!string.IsNullOrEmpty(SearchString))
             {
-                query = query.Where(p => p.Name.Contains(SearchString) ||
-                                         p.GamePlayers.Any(gp => gp.Game != null && gp.Game.Title.Contains(SearchString)));
+                query = query.Where(p =>
+                    p.Name.Contains(SearchString, StringComparison.OrdinalIgnoreCase) ||
+                    p.GamePlayers.Any(gp => gp.Game != null && gp.Game.Title.Contains(SearchString, StringComparison.OrdinalIgnoreCase)));
             }
 
+            // Sorting logic
             query = SortOrder switch
             {
                 "name_desc" => query.OrderByDescending(p => p.Name),
@@ -52,6 +57,7 @@ namespace Final3.Pages.Players
                 _ => query.OrderBy(p => p.Name),
             };
 
+            // Pagination
             TotalPages = (int)Math.Ceiling(await query.CountAsync() / (double)PageSize);
             Players = await query
                 .Skip((PageNum - 1) * PageSize)
