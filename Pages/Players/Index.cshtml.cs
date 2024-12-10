@@ -40,13 +40,16 @@ namespace Final3.Pages.Players
                 .ThenInclude(gp => gp.Game)
                 .AsQueryable();
 
-            // Search logic
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                query = query.Where(p =>
-                    p.Name.Contains(SearchString, StringComparison.OrdinalIgnoreCase) ||
-                    p.GamePlayers.Any(gp => gp.Game != null && gp.Game.Title.Contains(SearchString, StringComparison.OrdinalIgnoreCase)));
-            }
+          // Search logic
+if (!string.IsNullOrEmpty(SearchString))
+{
+    var upperSearch = SearchString.ToUpper(); // Convert search string to uppercase for case-insensitive comparison
+    query = query.Where(p =>
+        EF.Functions.Like(p.FavoriteGame.ToUpper(), $"%{upperSearch}%") || 
+        EF.Functions.Like(p.Name.ToUpper(), $"%{upperSearch}%"));
+}
+
+
 
             // Sorting logic
             query = SortOrder switch
