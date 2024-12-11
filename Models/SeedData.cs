@@ -22,21 +22,21 @@ namespace Final3.Models
             // Seed Games
             var games = new List<Game>
             {
-                new Game { Title = "Elder Scrolls V: Skyrim", Genre = "RPG", ReleaseDate = DateTime.Parse("2011-11-11"), Developer = "Bethesda Game Studios" },
-                new Game { Title = "The Witcher 3", Genre = "Action RPG", ReleaseDate = DateTime.Parse("2015-05-19"), Developer = "CD Projekt Red" },
-                new Game { Title = "Stardew Valley", Genre = "Simulation", ReleaseDate = DateTime.Parse("2016-02-26"), Developer = "ConcernedApe" },
-                new Game { Title = "Fortnite", Genre = "Battle Royale", ReleaseDate = DateTime.Parse("2017-07-25"), Developer = "Epic Games" },
-                new Game { Title = "Minecraft", Genre = "Sandbox", ReleaseDate = DateTime.Parse("2011-11-18"), Developer = "Mojang" },
-                new Game { Title = "Overwatch 2", Genre = "Shooter", ReleaseDate = DateTime.Parse("2022-10-04"), Developer = "Blizzard Entertainment" },
-                new Game { Title = "Cyberpunk 2077", Genre = "Open-World RPG", ReleaseDate = DateTime.Parse("2020-12-10"), Developer = "CD Projekt Red" },
-                new Game { Title = "Apex Legends", Genre = "Battle Royale", ReleaseDate = DateTime.Parse("2019-02-04"), Developer = "Respawn Entertainment" },
-                new Game { Title = "World of Warcraft", Genre = "MMORPG", ReleaseDate = DateTime.Parse("2004-11-23"), Developer = "Blizzard Entertainment" },
-                new Game { Title = "League of Legends", Genre = "MOBA", ReleaseDate = DateTime.Parse("2009-10-27"), Developer = "Riot Games" },
-                new Game { Title = "Diablo IV", Genre = "Hack and Slash RPG", ReleaseDate = DateTime.Parse("2023-06-06"), Developer = "Blizzard Entertainment" },
-                new Game { Title = "Hades", Genre = "Rogue-like", ReleaseDate = DateTime.Parse("2020-09-17"), Developer = "Supergiant Games" },
-                new Game { Title = "Valorant", Genre = "Shooter", ReleaseDate = DateTime.Parse("2020-06-02"), Developer = "Riot Games" },
-                new Game { Title = "Animal Crossing: New Horizons", Genre = "Simulation", ReleaseDate = DateTime.Parse("2020-03-20"), Developer = "Nintendo" },
-                new Game { Title = "Pokémon Scarlet and Violet", Genre = "Adventure", ReleaseDate = DateTime.Parse("2022-11-18"), Developer = "Game Freak" }
+                new Game { Title = "Elder Scrolls V: Skyrim", Genre = "RPG", ReleaseDate = DateTime.Parse("2011-11-11")},
+                new Game { Title = "The Witcher 3", Genre = "Action RPG", ReleaseDate = DateTime.Parse("2015-05-19")},
+                new Game { Title = "Stardew Valley", Genre = "Simulation", ReleaseDate = DateTime.Parse("2016-02-26")},
+                new Game { Title = "Fortnite", Genre = "Battle Royale", ReleaseDate = DateTime.Parse("2017-07-25") },
+                new Game { Title = "Minecraft", Genre = "Sandbox", ReleaseDate = DateTime.Parse("2011-11-18") },
+                new Game { Title = "Overwatch 2", Genre = "Shooter", ReleaseDate = DateTime.Parse("2022-10-04")},
+                new Game { Title = "Cyberpunk 2077", Genre = "Open-World RPG", ReleaseDate = DateTime.Parse("2020-12-10")},
+                new Game { Title = "Apex Legends", Genre = "Battle Royale", ReleaseDate = DateTime.Parse("2019-02-04")},
+                new Game { Title = "World of Warcraft", Genre = "MMORPG", ReleaseDate = DateTime.Parse("2004-11-23")},
+                new Game { Title = "League of Legends", Genre = "MOBA", ReleaseDate = DateTime.Parse("2009-10-27")},
+                new Game { Title = "Diablo IV", Genre = "Hack and Slash RPG", ReleaseDate = DateTime.Parse("2023-06-06")},
+                new Game { Title = "Hades", Genre = "Rogue-like", ReleaseDate = DateTime.Parse("2020-09-17")},
+                new Game { Title = "Valorant", Genre = "Shooter", ReleaseDate = DateTime.Parse("2020-06-02")},
+                new Game { Title = "Animal Crossing: New Horizons", Genre = "Simulation", ReleaseDate = DateTime.Parse("2020-03-20")},
+                new Game { Title = "Pokemon Scarlet and Violet", Genre = "Adventure", ReleaseDate = DateTime.Parse("2022-11-18")}
             };
             context.Games!.AddRange(games);
             context.SaveChanges();
@@ -60,7 +60,7 @@ namespace Final3.Models
     new Player { Name = "Nathaniel Scott", HoursPlayed = 860, FavoriteGame = "Apex Legends" },
     new Player { Name = "Olivia Martinez", HoursPlayed = 650, FavoriteGame = "Animal Crossing: New Horizons" },
     new Player { Name = "Paul Harris", HoursPlayed = 540, FavoriteGame = "Elden Ring" },
-    new Player { Name = "Quincy Wright", HoursPlayed = 820, FavoriteGame = "Pokémon Scarlet and Violet" },
+    new Player { Name = "Quincy Wright", HoursPlayed = 820, FavoriteGame = "Pokemon Scarlet and Violet" },
     new Player { Name = "Rachel Nelson", HoursPlayed = 760, FavoriteGame = "Cyberpunk 2077" },
     new Player { Name = "Steve Clark", HoursPlayed = 890, FavoriteGame = "FIFA 23" },
     new Player { Name = "Tina Baker", HoursPlayed = 920, FavoriteGame = "The Witcher 3" },
