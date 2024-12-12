@@ -16,10 +16,10 @@ namespace Final3.Models
 
             if (context.Players!.Any() || context.Games!.Any() || context.GamePlayers!.Any())
             {
-                return; // Database already seeded
+                return; 
             }
 
-            // Seed Games
+           
             var games = new List<Game>
             {
                 new Game { Title = "Elder Scrolls V: Skyrim", Genre = "RPG", ReleaseDate = DateTime.Parse("2011-11-11")},
@@ -38,10 +38,9 @@ namespace Final3.Models
                 new Game { Title = "Animal Crossing: New Horizons", Genre = "Simulation", ReleaseDate = DateTime.Parse("2020-03-20")},
                 new Game { Title = "Pokemon Scarlet and Violet", Genre = "Adventure", ReleaseDate = DateTime.Parse("2022-11-18")}
             };
-            context.Games!.AddRange(games);
-            context.SaveChanges();
+            context.Games!.AddRange(games); context.SaveChanges();
 
-            // Seed Players
+            
            var players = new List<Player>
 {
     new Player { Name = "Alice Johnson", HoursPlayed = 890, FavoriteGame = "Minecraft" },
@@ -70,15 +69,14 @@ namespace Final3.Models
     new Player { Name = "Xavier Brooks", HoursPlayed = 850, FavoriteGame = "Fortnite" },
     new Player { Name = "Yvonne Rivera", HoursPlayed = 600, FavoriteGame = "League of Legends" }
 };
-context.Players.AddRange(players);
-context.SaveChanges();
-            // Seed GamePlayers (Relationships)
+context.Players.AddRange(players);  context.SaveChanges();
+           
             var gamePlayers = new List<GamePlayer>();
             var random = new Random();
 
             foreach (var player in players)
             {
-                var gamesPlayed = random.Next(3, 6); // Each player plays between 3 and 5 games
+                var gamesPlayed = random.Next(3, 6); 
                 var selectedGames = games.OrderBy(_ => random.Next()).Take(gamesPlayed).ToList();
 
                 foreach (var game in selectedGames)

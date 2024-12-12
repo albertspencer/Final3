@@ -6,20 +6,20 @@
 
 <h1>Players</h1>
 
-<!-- Search Bar -->
+
 <div class="row mb-3">
     <form class="d-flex" role="search" asp-page="./Index" method="get">
         <div class="col-4">
             <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-search"></i></span>
-                <input class="form-control" type="search" name="SearchString" value="@Model.SearchString" placeholder="Search by Player or Game" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input class="form-control" type="search" name="SearchString" value="@Model.SearchString" placeholder="Search by Player or Game" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
             </div>
-        </div>
-    </form>
+            </div>
+        </form>
 </div>
 
-<!-- Players Table -->
+
 <table class="table">
     <thead>
         <tr>
@@ -54,12 +54,12 @@
     </tbody>
 </table>
 
-<!-- Pagination -->
+
 <hr />
 <nav aria-label="Page navigation example">
     <ul class="pagination">
         <li class="page-item @(Model.PageNum <= 1 ? "disabled" : "")">
-            <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)" asp-route-SortOrder="@Model.SortOrder" asp-route-SearchString="@Model.SearchString">Previous</a>
+        <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)" asp-route-SortOrder="@Model.SortOrder" asp-route-SearchString="@Model.SearchString">Previous</a>
         </li>
         <li class="page-item @(Model.PageNum >= Model.TotalPages ? "disabled" : "")">
             <a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)" asp-route-SortOrder="@Model.SortOrder" asp-route-SearchString="@Model.SearchString">Next</a>

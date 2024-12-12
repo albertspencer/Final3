@@ -5,7 +5,7 @@ namespace Final3.Models;
 
 public class Game
 {
-    public int GameID { get; set; } // Primary Key
+    public int GameID { get; set; } 
 
     [Display(Name = "Game Title")]
     [Required]
@@ -23,6 +23,6 @@ public class Game
     [StringLength(100)]
     public string Developer { get; set; } = string.Empty;
 
-    // Navigation property for the many-to-many relationship with Player
+    
     public ICollection<GamePlayer> GamePlayers { get; set; } = new List<GamePlayer>();
 }

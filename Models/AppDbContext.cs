@@ -14,20 +14,13 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Configure composite primary key for GamePlayer (Many-to-Many Relationship)
-        modelBuilder.Entity<GamePlayer>()
-            .HasKey(gp => new { gp.GameID, gp.PlayerID });
+      
+        modelBuilder.Entity<GamePlayer>().HasKey(gp => new { gp.GameID, gp.PlayerID });
 
-        // Define the relationship between GamePlayer and Game
-        modelBuilder.Entity<GamePlayer>()
-            .HasOne(gp => gp.Game)
-            .WithMany(g => g.GamePlayers)
-            .HasForeignKey(gp => gp.GameID);
+       
+        modelBuilder.Entity<GamePlayer>().HasOne(gp => gp.Game).WithMany(g => g.GamePlayers).HasForeignKey(gp => gp.GameID);
 
-        // Define the relationship between GamePlayer and Player
-        modelBuilder.Entity<GamePlayer>()
-            .HasOne(gp => gp.Player)
-            .WithMany(p => p.GamePlayers)
-            .HasForeignKey(gp => gp.PlayerID);
+       
+        modelBuilder.Entity<GamePlayer>().HasOne(gp => gp.Player).WithMany(p => p.GamePlayers).HasForeignKey(gp => gp.PlayerID);
     }
 }
