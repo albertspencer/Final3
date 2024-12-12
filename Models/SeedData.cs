@@ -41,35 +41,36 @@ namespace Final3.Models
             context.Games!.AddRange(games); context.SaveChanges();
 
             
-           var players = new List<Player>
-{
-    new Player { Name = "Alice Johnson", HoursPlayed = 890, FavoriteGame = "Minecraft" },
-    new Player { Name = "Bob Smith", HoursPlayed = 725, FavoriteGame = "Fortnite" },
-    new Player { Name = "Catherine Lee", HoursPlayed = 650, FavoriteGame = "Stardew Valley" },
-    new Player { Name = "Daniel Brown", HoursPlayed = 770, FavoriteGame = "Elder Scrolls V: Skyrim" },
-    new Player { Name = "Ella Davis", HoursPlayed = 920, FavoriteGame = "The Witcher 3" },
-    new Player { Name = "Frank Wilson", HoursPlayed = 520, FavoriteGame = "League of Legends" },
-    new Player { Name = "Grace Hall", HoursPlayed = 810, FavoriteGame = "Overwatch 2" },
-    new Player { Name = "Harry Adams", HoursPlayed = 590, FavoriteGame = "Diablo IV" },
-    new Player { Name = "Ivy Thompson", HoursPlayed = 490, FavoriteGame = "Valorant" },
-    new Player { Name = "Jack White", HoursPlayed = 680, FavoriteGame = "World of Warcraft" },
-    new Player { Name = "Karen Bell", HoursPlayed = 430, FavoriteGame = "Terraria" },
-    new Player { Name = "Larry Moore", HoursPlayed = 610, FavoriteGame = "Hades" },
-    new Player { Name = "Monica Taylor", HoursPlayed = 770, FavoriteGame = "Dark Souls III" },
-    new Player { Name = "Nathaniel Scott", HoursPlayed = 860, FavoriteGame = "Apex Legends" },
-    new Player { Name = "Olivia Martinez", HoursPlayed = 650, FavoriteGame = "Animal Crossing: New Horizons" },
-    new Player { Name = "Paul Harris", HoursPlayed = 540, FavoriteGame = "Elden Ring" },
-    new Player { Name = "Quincy Wright", HoursPlayed = 820, FavoriteGame = "Pokemon Scarlet and Violet" },
-    new Player { Name = "Rachel Nelson", HoursPlayed = 760, FavoriteGame = "Cyberpunk 2077" },
-    new Player { Name = "Steve Clark", HoursPlayed = 890, FavoriteGame = "FIFA 23" },
-    new Player { Name = "Tina Baker", HoursPlayed = 920, FavoriteGame = "The Witcher 3" },
-    new Player { Name = "Uma Carter", HoursPlayed = 730, FavoriteGame = "Stardew Valley" },
-    new Player { Name = "Victor Young", HoursPlayed = 810, FavoriteGame = "Call of Duty: Warzone" },
-    new Player { Name = "Wendy Evans", HoursPlayed = 700, FavoriteGame = "Minecraft" },
-    new Player { Name = "Xavier Brooks", HoursPlayed = 850, FavoriteGame = "Fortnite" },
-    new Player { Name = "Yvonne Rivera", HoursPlayed = 600, FavoriteGame = "League of Legends" }
-};
-context.Players.AddRange(players);  context.SaveChanges();
+            var players = new List<Player>
+            {
+                new Player { Name = "Alice Johnson", HoursPlayed = 890, FavoriteGame = "Minecraft" },
+                new Player { Name = "Bob Smith", HoursPlayed = 725, FavoriteGame = "Fortnite" },
+                new Player { Name = "Catherine Lee", HoursPlayed = 650, FavoriteGame = "Stardew Valley" },
+                new Player { Name = "Daniel Brown", HoursPlayed = 770, FavoriteGame = "Elder Scrolls V: Skyrim" },
+                new Player { Name = "Ella Davis", HoursPlayed = 920, FavoriteGame = "The Witcher 3" },
+                new Player { Name = "Frank Wilson", HoursPlayed = 520, FavoriteGame = "League of Legends" },
+                new Player { Name = "Grace Hall", HoursPlayed = 810, FavoriteGame = "Overwatch 2" },
+                new Player { Name = "Harry Adams", HoursPlayed = 590, FavoriteGame = "Diablo IV" },
+                new Player { Name = "Ivy Thompson", HoursPlayed = 490, FavoriteGame = "Valorant" },
+                new Player { Name = "Jack White", HoursPlayed = 680, FavoriteGame = "World of Warcraft" },
+                new Player { Name = "Karen Bell", HoursPlayed = 430, FavoriteGame = "Terraria" },
+                new Player { Name = "Larry Moore", HoursPlayed = 610, FavoriteGame = "Hades" },
+                new Player { Name = "Monica Taylor", HoursPlayed = 770, FavoriteGame = "Dark Souls III" },
+                new Player { Name = "Nathaniel Scott", HoursPlayed = 860, FavoriteGame = "Apex Legends" },
+                new Player { Name = "Olivia Martinez", HoursPlayed = 650, FavoriteGame = "Animal Crossing: New Horizons" },
+                new Player { Name = "Paul Harris", HoursPlayed = 540, FavoriteGame = "Elden Ring" },
+                new Player { Name = "Quincy Wright", HoursPlayed = 820, FavoriteGame = "Pokemon Scarlet and Violet" },
+                new Player { Name = "Rachel Nelson", HoursPlayed = 760, FavoriteGame = "Cyberpunk 2077" },
+                new Player { Name = "Steve Clark", HoursPlayed = 890, FavoriteGame = "FIFA 23" },
+                new Player { Name = "Tina Baker", HoursPlayed = 920, FavoriteGame = "The Witcher 3" },
+                new Player { Name = "Uma Carter", HoursPlayed = 730, FavoriteGame = "Stardew Valley" },
+                new Player { Name = "Victor Young", HoursPlayed = 810, FavoriteGame = "Call of Duty: Warzone" },
+                new Player { Name = "Wendy Evans", HoursPlayed = 700, FavoriteGame = "Minecraft" },
+                new Player { Name = "Xavier Brooks", HoursPlayed = 850, FavoriteGame = "Fortnite" },
+                new Player { Name = "Yvonne Rivera", HoursPlayed = 600, FavoriteGame = "League of Legends" }
+            };
+            context.Players.AddRange(players);  
+            context.SaveChanges();
            
             var gamePlayers = new List<GamePlayer>();
             var random = new Random();

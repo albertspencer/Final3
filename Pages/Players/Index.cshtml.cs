@@ -6,7 +6,7 @@ using Final3.Models;
 namespace Final3.Pages.Players
 {
     public class IndexModel : PageModel
-{
+    {
         private readonly AppDbContext _context;
 
         public IndexModel(AppDbContext context)
@@ -28,23 +28,20 @@ namespace Final3.Pages.Players
         public int TotalPages { get; set; }
 
         public async Task OnGetAsync()
-    {
+        {
            
             ViewData["NameSort"] = string.IsNullOrEmpty(SortOrder) ? "name_desc" : "";
             ViewData["HoursSort"] = SortOrder == "hours_asc" ? "hours_desc" : "hours_asc";
 
-            var query = _context.Players
-                .Include(p => p.GamePlayers)
-                .ThenInclude(gp => gp.Game)
-                .AsQueryable();
+            var query = _context.Players.Include(p => p.GamePlayers).ThenInclude(gp => gp.Game).AsQueryable();
 
             if (!string.IsNullOrEmpty(SearchString))
-{
-        var searchLower = SearchString.ToLower();
-        query = query.Where(p =>
-        p.Name.ToLower().Contains(searchLower) ||
-        p.FavoriteGame.ToLower().Contains(searchLower));
-}
+            {
+                var searchLower = SearchString.ToLower();
+                query = query.Where(p =>
+                p.Name.ToLower().Contains(searchLower) ||
+                p.FavoriteGame.ToLower().Contains(searchLower));
+            }
             query = SortOrder switch
             {
                 "name_desc" => query.OrderByDescending(p => p.Name),
@@ -53,7 +50,7 @@ namespace Final3.Pages.Players
                 _ => query.OrderBy(p => p.Name),
             };
             TotalPages = (int)Math.Ceiling(await query.CountAsync() / (double)PageSize);
-            Players = await query.Skip((PageNum - 1) * PageSize) .Take(PageSize) .ToListAsync();
+            Players = await query.Skip((PageNum - 1) * PageSize).Take(PageSize).ToListAsync();
         }
     }
 }
