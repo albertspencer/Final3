@@ -1,1 +1,2 @@
 # Final3
+I am sorry for not being able to do more in this project. I regret not being able to implement some pictures and and a carousel into this. I also apologize for not being able to get all of CRUD into this. I work 2 jobs and also had finals all this week and was just doing really bad in my cal class and neeeded to focus on it. Thanks for a great semester. I have learned a lot. I hope you have a deserved break and thanks for working with me this semester.
