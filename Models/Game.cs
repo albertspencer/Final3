@@ -19,8 +19,6 @@ public class Game
     [DataType(DataType.Date)]
     public DateTime ReleaseDate { get; set; }
 
-    [Display(Name = "Developer")]
-    [StringLength(100)]
     public string Developer { get; set; } = string.Empty;
 
     

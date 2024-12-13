@@ -12,7 +12,7 @@ namespace Final3.Models
         public string Name { get; set; } = string.Empty;
 
         [Display(Name = "Hours Played")]
-        [Range(0, int.MaxValue, ErrorMessage = "Hours played must be a non negative value.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Hours played has to be a non negative value.")]
         public int HoursPlayed { get; set; }
 
         [Display(Name = "Favorite Game")]
